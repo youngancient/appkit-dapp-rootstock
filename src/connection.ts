@@ -54,5 +54,4 @@ export const appkit = createAppKit({
   },
 });
 
-console.log("Switching to network ID:", kaiaTestNetwork.id);
 appkit.switchNetwork(kaiaTestNetwork);
