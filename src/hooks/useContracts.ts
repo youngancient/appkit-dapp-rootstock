@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import useRunners from "./useRunners";
 import { Contract } from "ethers";
-import TOKEN_ABI from "../ABI/token.json";
+import { TOKEN_ABI } from "../ABI/token";
+
 
 
 export const useTokenContract = (withSigner = false) => {

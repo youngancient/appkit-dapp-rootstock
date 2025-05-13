@@ -1,37 +1,27 @@
 import { CaipNetwork, createAppKit } from "@reown/appkit/react";
 import { EthersAdapter } from "@reown/appkit-adapter-ethers";
+import { rootstockTestnet as rawRootstock } from "@reown/appkit/networks";
 
-
-export const kaiaTestNetwork: CaipNetwork = {
-  id: 1001,
-  chainNamespace: "eip155",
-  caipNetworkId: "eip155:1001",
-  name: "Kaia Testnet",
-  nativeCurrency: {
-    name: "Kaia",
-    symbol: "KAIA",
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: { http: [import.meta.env.VITE_KAIA_TESTNET_RPC_URL] },
-  },
-  blockExplorers: {
-    default: { name: "Kaia Explorer", url: import.meta.env.VITE_KAIA_TESTNET_EXPLORER_URL },
-  },
-};
 
 // 1. Get projectId
 const projectId = import.meta.env.VITE_APPKIT_PROJECT_ID;
 
+export const rootstockTestnet: CaipNetwork = {
+  ...rawRootstock,
+  id: 31,
+  chainNamespace: "eip155",
+  caipNetworkId: "eip155:31",
+};
+
 // 2. Set the networks
 const networks: [CaipNetwork, ...CaipNetwork[]] = [
-  kaiaTestNetwork,
+  rootstockTestnet,
 ];
 
 // 3. Create a metadata object - optional
 const metadata = {
-  name: "Appkit-sample",
-  description: "Appkit sample project",
+  name: "Token Minting Dapp",
+  description: "A token minting dapp built on Rootstock",
   url: "https://mywebsite.com",
   icons: ["https://avatars.mywebsite.com/"],
 };
@@ -44,7 +34,7 @@ export const appkit = createAppKit({
   projectId,
   allowUnsupportedChain: false,
   allWallets: "SHOW",
-  defaultNetwork: kaiaTestNetwork,
+  defaultNetwork: rootstockTestnet,
   enableEIP6963: true,
   features: {
     analytics: true,
@@ -54,4 +44,4 @@ export const appkit = createAppKit({
   },
 });
 
-appkit.switchNetwork(kaiaTestNetwork);
+appkit.switchNetwork(rootstockTestnet);

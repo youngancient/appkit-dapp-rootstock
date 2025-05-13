@@ -15,7 +15,6 @@
     "react-toastify": "^11.0.0"
   },
   "devDependencies": {
-    
     "@eslint/js": "^9.9.0",
     "@reown/appkit": "1.6.0",
     "@reown/appkit-adapter-ethers": "1.6.0",
