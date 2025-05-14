@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-This dapp interacts with the [Jinx Token contract](https://kairos.kaiascope.com/address/0x33651f2fc249f2dA9903b46f934e76cD79181ED8#code)
+This dapp interacts with the [Free Token contract](https://rootstock-testnet.blockscout.com/address/0x2ad44265185A6E739B53cbF6b190B43726553627#code)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
