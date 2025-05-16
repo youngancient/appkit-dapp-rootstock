@@ -15,7 +15,7 @@ export const useReadFunctions = () => {
     }
     try {
       const balance = await tokenContract.balances(address);
-      return balance;
+      return Number(balance);
     } catch (error) {
       toast.error("Failed to fetch balance");
       console.error(error);
@@ -46,7 +46,12 @@ export const useReadFunctions = () => {
     try {
       const [name, symbol, currentSupply, maxSupply] =
         await tokenContract.getTokenDetail();
-      return { name, symbol, currentSupply, maxSupply };
+      return {
+        name,
+        symbol,
+        currentSupply: Number(currentSupply),
+        maxSupply: Number(maxSupply),
+      };
     } catch (error) {
       toast.error("Failed to fetch token detail");
       console.error(error);
