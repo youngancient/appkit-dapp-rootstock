@@ -1,11 +1,12 @@
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import "./connection.ts";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { formatAddress } from "./utils.ts";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useReadFunctions } from "./hooks/contractHook/useReadContract.ts";
+import { useWriteFunctions } from "./hooks/contractHook/useWriteContract.ts";
 
 interface ITokenDetail {
   name: string;
@@ -21,35 +22,49 @@ function App() {
   // controls popup of wallet connect monal
   const { open } = useAppKit();
 
-  // mock loading state for write contract calls
-  const [isMinting] = useState(false);
-  const [isTransferring] = useState(false);
-
   const { getBalance, getTokenDetail, isLoadingBalance, isLoadingDetails } =
     useReadFunctions();
 
-  useEffect(() => {
-    if (!isConnected) {
-      return;
-    }
-    if (!address) {
-      return;
-    }
-    const fetchData = async () => {
-      const bal = await getBalance();
-      const detail = await getTokenDetail();
-      if (!bal) {
-        return;
-      }
-      if (!detail) {
-        return;
-      }
-      setTokenBalance(bal);
-      setTokenDetail(detail);
-    };
+  const fetchData = useCallback(async () => {
+    const bal = await getBalance();
+    const detail = await getTokenDetail();
+    if (!bal || !detail) return;
+    setTokenBalance(bal);
+    setTokenDetail(detail);
+  }, [getBalance, getTokenDetail]);
 
+  useEffect(() => {
+    if (!isConnected || !address) {
+      return;
+    }
     fetchData();
-  }, [isConnected, address]);
+  }, [isConnected, address, fetchData]);
+
+  const { mintToken, transferToken, isMinting, isTransferring } =
+    useWriteFunctions();
+
+  const handleMinting = async () => {
+    const amount = "1000";
+    const isMintingSuccessful = await mintToken(amount);
+    if (!isMintingSuccessful) {
+      toast.error("Minting Failed!!!");
+      return;
+    }
+    toast.success("Minting successful!");
+    fetchData();
+  };
+
+  const handleTransfer = async () => {
+    const amount = "1000";
+    const receiver = "0xd3e0d7fa9ac7253c18ccac87f643e61baf1da3ea";
+    const isTransferSuccessful = await transferToken(amount, receiver);
+    if (!isTransferSuccessful) {
+      toast.error("Transfer Failed!!!");
+      return;
+    }
+    toast.success("Transfer Successful!");
+    fetchData();
+  };
 
   return (
     <>
@@ -98,16 +113,10 @@ function App() {
         <div className="flex-2">
           {isConnected && (
             <>
-              <button
-                onClick={() => console.log("call mint")}
-                disabled={isMinting}
-              >
+              <button onClick={handleMinting} disabled={isMinting}>
                 {isMinting ? "Minting" : "Mint Token"}
               </button>
-              <button
-                onClick={() => console.log("calling transfer")}
-                disabled={isTransferring}
-              >
+              <button onClick={handleTransfer} disabled={isTransferring}>
                 {isTransferring ? "Sending" : "Transfer"}
               </button>
             </>
