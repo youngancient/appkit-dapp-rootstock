@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100vw;
 }
 
 .logo {
@@ -17,20 +18,29 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-.img img{
+.loading {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #A55E10; 
+}
+
+
+.img img {
   border-radius: 50%;
 }
-.flex, .flex-2{
+
+.flex, .flex-2 {
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
 }
-.flex-2{
+.flex-2 {
   flex-direction: column;
   gap: 2rem;
 }
-.mt{
+
+.mt {
   margin-top: 1rem;
 }
 
@@ -50,9 +60,46 @@
 }
 
 .card {
-  padding: 2em;
+  background-color: #A55E10;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
 }
 
 .read-the-docs {
   color: #888;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.wide-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.wide-button:hover {
+  background-color: #4a4ee3;
+}
+
+.wide-button:disabled {
+  /* background-color: #aab4ff; */
+  cursor: not-allowed;
+  opacity: 0.6;
 }
