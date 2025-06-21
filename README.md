@@ -20,8 +20,8 @@ Built with:
 
 ## ⚙️ Setup & Run Instructions
 
-1. Clone the repo: `git clone https://github.com/yourusername/free-token-dapp.git`
-2. Navigate to the folder: `cd free-token-dapp`
+1. Clone the repo: `git clone https://github.com/youngancient/token-mint-dapp-rootstock.git`
+2. Navigate to the folder: `cd token-mint-dapp-rootstock`
 3. Install dependencies: `npm install`
 4. Get the `.env` ready following the `.env.example`
 5. Start the app: `npm run dev`
@@ -50,13 +50,13 @@ You can add the Rootstock Testnet manually or via [Chainlist](https://chainlist.
 
 You can request free tRBTC for testing from the official Rootstock faucet:
 
-- [https://faucet.rsk.co/](https://faucet.rsk.co/)
+- [https://faucet.rootstock.io/](https://faucet.rootstock.io/)
 
 ---
 
 ## 🔗 Useful Links
 
-- Smart Contract (Free Token): https://rootstock-testnet.blockscout.com/address/0x2ad44265185A6E739B53cbF6b190B43726553627#code  
-- Rootstock Faucet: https://faucet.rsk.co/  
-- RSK Testnet Explorer: https://explorer.testnet.rsk.co  
-- Reown Documentation: https://docs.reown.dev
+- [Smart Contract (Free Token)](https://rootstock-testnet.blockscout.com/address/0x2ad44265185A6E739B53cbF6b190B43726553627#code)
+- [Rootstock Faucet](https://faucet.rootstock.io/)
+- [RSK Testnet Explorer](https://rootstock-testnet.blockscout.com/)
+- [Reown Documentation](https://reown.com/appkit)
